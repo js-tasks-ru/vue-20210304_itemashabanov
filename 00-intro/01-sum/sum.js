@@ -6,5 +6,8 @@
  * @return {Number} сумма чисел a и b
  */
 export function sum(a, b) {
-  // Решение
+  if(typeof(a) && typeof(b) === "number")
+     return a + b;
+  else
+     return "You'r need enter a number!";
 }
