@@ -1,3 +1,13 @@
-// import Vue from './vendor/vue.esm.browser.js';
+import Vue from './vendor/vue.esm.browser.js';
 
-// new Vue();
+const counter = new Vue({
+    el: "#counter",
+    data: {
+        count: 0
+    },
+    methods: {
+        countUpdate() {
+            return this.count += 1;
+        }
+    }
+});
