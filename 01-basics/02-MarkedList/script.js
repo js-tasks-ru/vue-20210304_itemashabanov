@@ -1,7 +1,7 @@
-// import Vue from './vendor/vue.esm.browser.js';
+import Vue from './vendor/vue.esm.browser.js';
 
 // From https://jsonplaceholder.typicode.com/comments
-/*
+
 const emails = [
   'Eliseo@gardner.biz',
   'Jayne_Kuhic@sydney.com',
@@ -29,6 +29,31 @@ const emails = [
   'Jeffery@juwan.us',
   'Isaias_Kuhic@jarrett.net',
 ];
-*/
 
-// new Vue();
+const listMark = new Vue({
+  data() {
+    return {
+      emails,
+      inputText: ""
+    }
+  },
+
+  computed: {
+    markedEmails() {
+      if(!this.emails)
+        return null;
+      
+      let emailsObj = this.emails.reduce(function(acc, cur, i) {
+        acc[i] = {name: cur, marked: null};
+        return acc;
+      }, []);
+
+      emailsObj.forEach((email) => {
+        if(this.inputText && email.name.toLowerCase().includes(this.inputText.toLowerCase())) {
+          email.marked = true;
+        }
+      });
+      return emailsObj;
+    }
+  }
+}).$mount("#app");
