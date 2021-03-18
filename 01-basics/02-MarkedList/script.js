@@ -43,13 +43,17 @@ const listMark = new Vue({
       if(!this.emails)
         return null;
       
-      let arInd = [];
-      this.emails.forEach((email, index) => {
-        if(this.inputText && email.toLowerCase().includes(this.inputText.toLowerCase())) {
-          arInd.push(index);
+      let emailsObj = this.emails.reduce(function(acc, cur, i) {
+        acc[i] = {name: cur, marked: null};
+        return acc;
+      }, []);
+
+      emailsObj.forEach((email) => {
+        if(this.inputText && email.name.toLowerCase().includes(this.inputText.toLowerCase())) {
+          email.marked = true;
         }
       });
-      return arInd;
+      return emailsObj;
     }
   }
 }).$mount("#app");
