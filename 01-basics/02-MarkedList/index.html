@@ -13,7 +13,7 @@
 
 <div id="app">
   <input v-model="inputText" type="text" />
-  <ul v-for="email in markeredIndex">
+  <ul v-for="email in markedEmails">
     <li :class="{marked: email.marked === true}">{{ email.name }}</li>
   </ul>
 </div>

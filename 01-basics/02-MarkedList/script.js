@@ -39,7 +39,7 @@ const listMark = new Vue({
   },
 
   computed: {
-    markeredIndex() {
+    markedEmails() {
       if(!this.emails)
         return null;
       
