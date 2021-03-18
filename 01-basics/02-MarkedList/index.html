@@ -12,14 +12,9 @@
 <body>
 
 <div id="app">
-  <input type="text" />
-  <ul>
-    <li>Email</li>
-    <li class="marked">Email</li>
-    <li class="marked">Email</li>
-    <li>Email</li>
-    <li>Email</li>
-    <li>...</li>
+  <input v-model="inputText" type="text" />
+  <ul v-for="(email, index) in emails">
+    <li :class="{marked: markeredIndex.includes(index)}">{{ email }}</li>
   </ul>
 </div>
 
