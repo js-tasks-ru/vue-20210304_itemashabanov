@@ -57,22 +57,6 @@ new Vue({
       if(!this.rawMeetup)
         return false;
       
-      // return {
-      //   title: this.rawMeetup.title,
-      //   description: this.rawMeetup.description,
-      //   imageSrc: this.rawMeetup.imageId ? getImageUrlByImageId(this.rawMeetup.imageId) : null,
-      //   organizer: this.rawMeetup.organizer,
-      //   place: this.rawMeetup.place,
-      //   date: this.formatDate(this.rawMeetup.date),
-      //   agenda: this.reformAgenda(this.rawMeetup.agenda),
-      // }
-
-      // return this.rawMeetup.map((meetup) => ({
-      //   ...meetup,
-      //   imageSrc: meetup.imageId ? getImageUrlByImageId(meetup.imageId) : null,
-      //   date: this.formatDate(meetup.date),
-      //   agenda: this.reformAgenda(meetup.agenda),
-      // }));
       return {
         ...this.rawMeetup,
         imageSrc: this.rawMeetup.imageId ? getImageUrlByImageId(this.rawMeetup.imageId) : null,
