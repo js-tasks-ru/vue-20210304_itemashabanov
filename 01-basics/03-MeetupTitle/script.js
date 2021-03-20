@@ -5,25 +5,13 @@ const a = new Vue({
         return {
             meetupCount: 5,
             meetupID: null,
-            firstTitle: null,
+            title: null,
         }
     },
 
     watch: {
         meetupID() {
-            this.title = this.getMeetupTitle(this.meetupID);
-        }
-    },
-
-    computed: {
-        title: {
-            get: function () {
-                return this.firstTitle;
-            },
-
-            set: function (newValue) {
-                this.firstTitle = newValue;
-            },
+            this.getMeetupTitle(this.meetupID);
         }
     },
 
@@ -31,7 +19,7 @@ const a = new Vue({
         getMeetupTitle(id) {
             fetch("https://course-vue.javascript.ru/api/meetups/" + id)
                 .then(res => res.json())
-                .then(meetup => this.firstTitle = meetup.title);
+                .then(meetup => this.title = meetup.title);
         },
     },
 }).$mount("#meetupTitle");
