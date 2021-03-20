@@ -6,7 +6,15 @@
 </head>
 <body>
 
-<!-- Решение -->
+  <div id="meetupTitle">
+    <label v-for="id in meetupCount">
+      <input v-model="meetupID" type="radio" :id="'id' + id" name="meetup" :value="id">
+      {{ id }}
+    </label>
+    <hr>
+    <p>{{ title }}</p>
+  </div>
+  
 
 <script type="module" src="script.js"></script>
 </body>
