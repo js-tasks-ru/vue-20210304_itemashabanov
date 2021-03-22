@@ -15,7 +15,7 @@ export default {
 
   methods: {
     increment(count) {
-      return count += 1;
+      return count + 1;
     },
 
     returnNewCount(count) {
