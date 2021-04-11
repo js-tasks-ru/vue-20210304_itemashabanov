@@ -4,10 +4,10 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 export function scrollBehavior(to, from, savedPosition) {
-  if(savedPosition || (from.matched.some(m => m.meta.saveScrollPosition) && to.matched.some(m => m.meta.saveScrollPosition)))
+  if(savedPosition)
     return savedPosition;
-  // else if(from.matched.some(m => m.meta.saveScrollPosition))
-  //   return savedPosition;
+  else if(from.matched.some(m => m.meta.saveScrollPosition) && to.matched.some(m => m.meta.saveScrollPosition))
+    return false;
   else if(to.hash)
     return {selector: to.hash};
   else
