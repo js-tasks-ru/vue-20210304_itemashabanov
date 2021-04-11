@@ -1,7 +1,11 @@
 <template>
-  <div class="toasts" id="toasts">
-    <div v-for="msg in msgObj" :key="msg.id" :class="['toast', (msg.type == 'success') ? 'toast_success' : 'toast_error']">
-      <app-icon :icon="(msg.type == 'success') ? 'check-circle' : 'alert-circle'" />
+  <div id="toasts" class="toasts">
+    <div
+      v-for="msg in msgObj"
+      :key="msg.id"
+      :class="['toast', msg.type == 'success' ? 'toast_success' : 'toast_error']"
+    >
+      <app-icon :icon="msg.type == 'success' ? 'check-circle' : 'alert-circle'" />
       <span>{{ msg.message }}</span>
     </div>
   </div>
@@ -15,6 +19,8 @@ const DELAY = 5000;
 export default {
   name: 'TheToaster',
 
+  components: { AppIcon },
+
   data() {
     return {
       msgObj: [],
@@ -24,13 +30,11 @@ export default {
     };
   },
 
-  components: { AppIcon },
-
   methods: {
     error(message) {
       this.msgObj.push({
         id: this.items++,
-        type: "error",
+        type: 'error',
         message,
       });
       this.removeToast(this.msgObj);
@@ -39,19 +43,16 @@ export default {
     success(message) {
       this.msgObj.push({
         id: this.items++,
-        type: "success",
+        type: 'success',
         message,
       });
       this.removeToast(this.msgObj);
     },
 
     removeToast(msgObj) {
-      setTimeout(
-        function(){
-          msgObj.shift();
-        }, 
-        DELAY
-      );
+      setTimeout(function () {
+        msgObj.shift();
+      }, DELAY);
     },
   },
 };

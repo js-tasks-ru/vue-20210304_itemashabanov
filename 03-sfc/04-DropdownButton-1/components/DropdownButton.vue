@@ -1,18 +1,19 @@
 <template>
   <div class="dropdown show">
-    <button type="button" :class="['button dropdown__toggle', {'dropdown__toggle_icon': needClass}]" @click="change">
+    <button type="button" :class="['button dropdown__toggle', { dropdown__toggle_icon: needClass }]" @click="change">
       <app-icon v-if="selectedItem.icon" :icon="selectedItem.icon" />
       {{ newTitle }}
     </button>
 
-    <div :class="['dropdown__menu', {'show': show}]">
-      <button type="button" v-for="option in options" :key="option.type"
-        :class="['dropdown__item', {'dropdown__item_icon': needClass}]"
+    <div :class="['dropdown__menu', { show: show }]">
+      <button
+        v-for="option in options"
+        :key="option.type"
+        type="button"
+        :class="['dropdown__item', { dropdown__item_icon: needClass }]"
         @click="select(option)"
       >
-        <app-icon v-if="option.icon"
-          :icon="option.icon"
-         />
+        <app-icon v-if="option.icon" :icon="option.icon" />
         {{ option.text }}
       </button>
     </div>
@@ -25,15 +26,24 @@ import AppIcon from './AppIcon';
 export default {
   name: 'DropdownButton',
 
+  components: { AppIcon },
+
+  model: {
+    prop: 'value',
+    event: 'change',
+  },
+
   props: {
     title: {
       type: String,
       required: true,
     },
+
     options: {
       type: Array,
       required: true,
     },
+
     value: {
       type: String,
       default: null,
@@ -48,28 +58,20 @@ export default {
 
   computed: {
     selectedItem() {
-      if(this.value != null) {
+      if (this.value != null) {
         return this.options.find((option) => option.value === this.value);
-      } else 
-        return false;
+      } else return false;
     },
+
     needClass() {
       return this.options.find((option) => option.icon != null) ? true : false;
     },
+
     newTitle() {
-      if(this.selectedItem.text)
-        return this.title + " - " + this.selectedItem.text;
-      else
-        return this.title;
+      if (this.selectedItem.text) return this.title + ' - ' + this.selectedItem.text;
+      else return this.title;
     },
   },
-
-  model: {
-    prop: 'value',
-    event: 'change'
-  },
-
-  components: { AppIcon },
 
   methods: {
     change() {
@@ -85,7 +87,7 @@ export default {
 </script>
 
 <style scoped>
-  .button {
+.button {
   display: inline-block;
   padding: 10px 24px;
   font-weight: 700;
@@ -94,7 +96,7 @@ export default {
   color: initial;
   text-align: center;
   border: 4px solid transparent;
-  transition: .2s all;
+  transition: 0.2s all;
   outline: none;
   box-shadow: none;
   background-color: transparent;
@@ -164,7 +166,7 @@ export default {
   display: block;
   width: 24px;
   height: 24px;
-  transition: .2s transform;
+  transition: 0.2s transform;
 }
 
 .button.dropdown__toggle.dropdown__toggle_icon {

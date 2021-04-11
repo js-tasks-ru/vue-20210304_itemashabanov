@@ -9,8 +9,8 @@ export default {
   },
 
   model: {
-    prop: "count",
-    event: "increment",
+    prop: 'count',
+    event: 'increment',
   },
 
   methods: {
@@ -19,7 +19,7 @@ export default {
     },
 
     returnNewCount(count) {
-        this.$emit('increment', this.increment(count));
+      this.$emit('increment', this.increment(count));
     },
   },
 
