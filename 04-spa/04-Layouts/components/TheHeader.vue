@@ -1,4 +1,19 @@
-<template></template>
+<template>
+  <header class="header">
+    <div>
+      <h1>
+        <a href="/" class="router-link-exact-active router-link-active"
+          ><img src="img/logo.svg" alt="Meetups"
+        /></a>
+      </h1>
+    </div>
+    <nav>
+      <a href="login.html">Вход</a>
+      <a href="register.html">Регистрация</a>
+      <a href="meetup-form.html">Создать митап</a>
+    </nav>
+  </header>
+</template>
 
 <script>
 export default {
