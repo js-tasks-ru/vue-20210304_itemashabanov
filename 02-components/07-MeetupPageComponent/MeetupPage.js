@@ -11,11 +11,11 @@ export default {
   },
 
   mounted() {
-    fetchMeetup(MEETUP_ID).then((res) => this.meetup = res);
+    fetchMeetup(MEETUP_ID).then((res) => (this.meetup = res));
   },
 
   components: {
-    MeetupView
+    MeetupView,
   },
 
   template: `<meetup-view v-if="meetup" :meetup="meetup" />`,

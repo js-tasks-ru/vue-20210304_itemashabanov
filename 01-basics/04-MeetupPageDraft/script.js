@@ -48,15 +48,13 @@ new Vue({
   data() {
     return {
       rawMeetup: null,
-    }
+    };
   },
 
   computed: {
-
     meetup() {
-      if(!this.rawMeetup)
-        return false;
-      
+      if (!this.rawMeetup) return false;
+
       return {
         ...this.rawMeetup,
         imageSrc: this.rawMeetup.imageId ? getImageUrlByImageId(this.rawMeetup.imageId) : null,
@@ -67,9 +65,11 @@ new Vue({
   },
 
   mounted() {
-    fetch("https://course-vue.javascript.ru/api/meetups/" + MEETUP_ID)
-        .then(res => res.json())
-        .then(meetup => {this.rawMeetup = meetup;});
+    fetch('https://course-vue.javascript.ru/api/meetups/' + MEETUP_ID)
+      .then((res) => res.json())
+      .then((meetup) => {
+        this.rawMeetup = meetup;
+      });
   },
 
   methods: {
@@ -88,5 +88,5 @@ new Vue({
         icon: getAgendaItemIcons()[agenda.type],
       }));
     },
-  }
+  },
 }).$mount('#app');

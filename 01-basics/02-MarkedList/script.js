@@ -34,26 +34,25 @@ const listMark = new Vue({
   data() {
     return {
       emails,
-      inputText: ""
-    }
+      inputText: '',
+    };
   },
 
   computed: {
     markedEmails() {
-      if(!this.emails)
-        return null;
-      
-      let emailsObj = this.emails.reduce(function(acc, cur, i) {
-        acc[i] = {name: cur, marked: null};
+      if (!this.emails) return null;
+
+      let emailsObj = this.emails.reduce(function (acc, cur, i) {
+        acc[i] = { name: cur, marked: null };
         return acc;
       }, []);
 
       emailsObj.forEach((email) => {
-        if(this.inputText && email.name.toLowerCase().includes(this.inputText.toLowerCase())) {
+        if (this.inputText && email.name.toLowerCase().includes(this.inputText.toLowerCase())) {
           email.marked = true;
         }
       });
       return emailsObj;
-    }
-  }
-}).$mount("#app");
+    },
+  },
+}).$mount('#app');

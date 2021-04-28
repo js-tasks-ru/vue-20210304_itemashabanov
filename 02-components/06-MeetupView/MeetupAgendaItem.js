@@ -12,10 +12,8 @@ export default {
 
   computed: {
     agendaTitle() {
-      if(this.agendaItem.title === null)
-        return getAgendaItemDefaultTitles()[this.agendaItem.type];
-      else
-        return this.agendaItem.title;
+      if (this.agendaItem.title === null) return getAgendaItemDefaultTitles()[this.agendaItem.type];
+      else return this.agendaItem.title;
     },
     agendaIcon() {
       return `/assets/icons/icon-${getAgendaItemIcons()[this.agendaItem.type]}.svg`;
