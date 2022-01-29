@@ -11,6 +11,7 @@ export const router = new VueRouter({
     {
       path: '/',
       component: QuerySync,
+      props: true,
     },
   ],
 });
