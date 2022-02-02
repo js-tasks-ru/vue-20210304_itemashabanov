@@ -24,15 +24,6 @@ export default {
     };
   },
 
-  // computed: {
-  //   listeners() {
-  //     return {
-  //       ...this.$listeners,
-  //       click: (event) => this.$emit('increment', Number(event.target.value) + 1),
-  //     };
-  //   },
-  // },
-
   watch: {
     count: {
       immediate: true,
@@ -53,8 +44,5 @@ export default {
       this.newCount = count + 1;
     },
   },
-  updated() {
-  
-  }
 };
 </script>
