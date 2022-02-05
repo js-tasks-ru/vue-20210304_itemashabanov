@@ -1,16 +1,106 @@
 <template>
-  <div class="input-group input-group_icon input-group_icon-left input-group_icon-right">
-    <img class="icon" />
+  <div class="input-group"
+    :class="{
+      'input-group_icon': hasIcon.exists,
+      'input-group_icon-left': hasIcon.left,
+      'input-group_icon-right': hasIcon.right,
+    }"
+  >
+    <slot name="left-icon" class="icon" />
+    <component
+      :is="isMultiline"
+      v-bind="$attrs"
+      ref="input"
+      class="form-control"
+      :class="{
+        'form-control_sm': isSmall,
+        'form-control_rounded': isRounded,
+      }"
+      :value.prop="value"
+      v-on="listeners"
+    ></component>
 
-    <input ref="" class="form-control form-control_rounded form-control_sm" />
-
-    <img class="icon" />
+    <slot name="right-icon" class="icon" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'AppInput',
+
+  inheritAttrs: false,
+
+  model: {
+    prop: 'value',
+    event: 'input',
+  },
+
+  props: {
+    small: {
+      type: Boolean,
+    },
+
+    rounded: {
+      type: Boolean,
+    },
+
+    multiline: {
+      type: Boolean,
+      default: false,
+    },
+
+    value: {
+      type: String,
+    },
+  },
+
+  data() {
+    return {
+      hasIcon: {
+        exists: false,
+        left: false,
+        right: false,
+      },
+    };
+  },
+
+  computed: {
+    isSmall() {
+      return this.small;
+    },
+
+    isRounded() {
+      return this.rounded;
+    },
+
+    isMultiline() {
+      return this.multiline ? 'textarea' : 'input';
+    },
+
+    listeners() {
+      return {
+        ...this.$listeners,
+        input: ($event) => this.$emit('input', $event.target.value),
+        change: ($event) => this.$emit('change', $event.target.value),
+      };
+    },
+  },
+
+  mounted() {
+    this.updateHasIcon();
+  },
+
+  updated() {
+    this.updateHasIcon();
+  },
+
+  methods: {
+    updateHasIcon() {
+      this.hasIcon.exists = !!this.$slots['left-icon'] || !!this.$slots['right-icon'];
+      this.hasIcon.left = !!this.$slots['left-icon'];
+      this.hasIcon.right = !!this.$slots['right-icon'];
+    },
+  },
 };
 </script>
 
